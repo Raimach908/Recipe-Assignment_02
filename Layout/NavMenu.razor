@@ -1,0 +1,59 @@
+﻿@inject NavigationManager Navigation
+
+<!-- Top Navbar -->
+<div class="top-row ps-3 navbar navbar-dark" style="background-color: #8B171A;">
+    <div class="container-fluid">
+        <a class="navbar-brand text-white d-flex align-items-center" href="/" style="font-family: 'Georgia', serif; font-weight: bold;">
+            <img src="/Images/logo.jpg" alt="Logo" style="width: 40px; height: 40px; margin-right: 14px; margin-left:20px; border-radius:20px" />
+            RecipeVault
+        </a>
+        <button title="Navigation menu" class="navbar-toggler" @onclick="ToggleNavMenu" style="border-color: white;">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+    </div>
+</div>
+
+<!-- Collapsible Navigation Menu -->
+<div class="@NavMenuCssClass nav-scrollable navbar-dark" style="background-color: #8B171A; border-top: 1px solid white;">
+    <nav class="flex-column">
+        <div class="nav-item px-3">
+            <NavLink class="nav-link text-white" href="/" Match="NavLinkMatch.All"
+                     style="font-family: 'Georgia', serif; font-weight: bold;">
+                <span class="bi bi-house-door-fill" aria-hidden="true"></span> Home
+            </NavLink>
+        </div>
+        <div class="nav-item px-3">
+            <NavLink class="nav-link text-white" href="recipeList"
+                     style="font-family: 'Georgia', serif; font-weight: bold;">
+                <span class="bi bi-list-nested" aria-hidden="true"></span> All Recipes
+            </NavLink>
+        </div>
+        <div class="nav-item px-3">
+            <NavLink class="nav-link text-white" href="recipeForm"
+                     style="font-family: 'Georgia', serif; font-weight: bold;">
+                <span class="bi bi-plus-square-fill" aria-hidden="true"></span> Add New Recipe
+            </NavLink>
+        </div>
+        <div class="nav-item px-3">
+            <NavLink class="nav-link text-white" href="recipeDetails"
+                     style="font-family: 'Georgia', serif; font-weight: bold;">
+                <span class="bi bi-plus-square-fill" aria-hidden="true"></span> Edit a Recipe
+            </NavLink>
+        </div>
+    </nav>
+</div>
+
+
+@code {
+    private bool collapseNavMenu = true;
+
+    // CSS class to manage navigation menu toggle
+    private string? NavMenuCssClass => collapseNavMenu ? "collapse" : null;
+
+    // Toggle navigation menu visibility
+    private void ToggleNavMenu()
+    {
+        collapseNavMenu = !collapseNavMenu;
+        StateHasChanged(); // Ensure UI updates when nav menu toggles
+    }
+}
